@@ -1,33 +1,33 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	Input := "()"
-	//Output = true
-	fmt.Println(isValid(Input))
+    Input := "()"
+    //Output = true
+    fmt.Println(isValid(Input))
 
-	Input = "()[]{}"
-	//Output = true
-	fmt.Println(isValid(Input))
+    Input = "()[]{}"
+    //Output = true
+    fmt.Println(isValid(Input))
 
-	Input = "(]"
-	//Output = false
-	fmt.Println(isValid(Input))
+    Input = "(]"
+    //Output = false
+    fmt.Println(isValid(Input))
 
-	Input = "([)]"
-	//Output = false
-	fmt.Println(isValid(Input))
+    Input = "([)]"
+    //Output = false
+    fmt.Println(isValid(Input))
 
-	Input = "{[]}"
-	//Output = true
-	fmt.Println(isValid(Input))
+    Input = "{[]}"
+    //Output = true
+    fmt.Println(isValid(Input))
 }
 
 func isValid(s string) bool {
-	return false
+    return false
 }
 
 /*

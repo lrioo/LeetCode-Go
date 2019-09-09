@@ -1,45 +1,45 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	Input := []string{"flower", "flow", "flowll"}
-	//Output = "fl"
-	fmt.Println(longestCommonPrefix(Input))
+    Input := []string{"flower", "flow", "flowll"}
+    //Output = "fl"
+    fmt.Println(longestCommonPrefix(Input))
 
-	Input = []string{"dog", "racecar", "car"}
-	//Output = ""
-	fmt.Println(longestCommonPrefix(Input))
+    Input = []string{"dog", "racecar", "car"}
+    //Output = ""
+    fmt.Println(longestCommonPrefix(Input))
 
-	Input = []string{"aaa", "aa", "a"}
-	//Output = ""
-	fmt.Println(longestCommonPrefix(Input))
+    Input = []string{"aaa", "aa", "a"}
+    //Output = ""
+    fmt.Println(longestCommonPrefix(Input))
 }
 
 func longestCommonPrefix(strs []string) string {
-	var prefix string
+    var prefix string
 
-	for i := 0; i < len(strs); i++ {
-		if i == 0 {
-			prefix = strs[0]
-			continue
-		}
+    for i := 0; i < len(strs); i++ {
+        if i == 0 {
+            prefix = strs[0]
+            continue
+        }
 
-		var j int
-		for j = 0; j < len(prefix) && j < len(strs[i]); j++ {
-			if prefix[j] != strs[i][j] {
-				if j == 0 {
-					return ""
-				}
-				break
-			}
-		}
-		prefix = prefix[:j]
-	}
+        var j int
+        for j = 0; j < len(prefix) && j < len(strs[i]); j++ {
+            if prefix[j] != strs[i][j] {
+                if j == 0 {
+                    return ""
+                }
+                break
+            }
+        }
+        prefix = prefix[:j]
+    }
 
-	return prefix
+    return prefix
 }
 
 /*
