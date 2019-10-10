@@ -27,40 +27,42 @@ func main() {
 }
 
 func isValid(str string) bool {
+    if str == "" {
+        return true
+    }
+
     if len(str)%2 != 0 {
         return false
     }
 
-    var cur int
+    c := make([]int32, 0, len(str)/2)
     for i, s := range str {
         switch s {
         case '(', '[', '{':
-            cur = i+1
+            c = append(c, s)
         default:
-            if cur == 0 {
+            if i == 0 {
                 return false
             }
             switch s {
             case ')':
-                if str[cur-1] != '(' {
+                if c[len(c)-1] != '(' {
                     return false
                 }
             case ']':
-                if str[cur-1] != '[' {
+                if c[len(c)-1] != '[' {
                     return false
                 }
             case '}':
-                if str[cur-1] != '{' {
+                if c[len(c)-1] != '{' {
                     return false
                 }
-            default:
-                continue
             }
-            cur--
+            c = c[:len(c)-1]
         }
     }
 
-    if cur > len(str) {
+    if len(c) > 0 {
         return false
     }
 
