@@ -26,8 +26,45 @@ func main() {
     fmt.Println(isValid(Input))
 }
 
-func isValid(s string) bool {
-    return false
+func isValid(str string) bool {
+    if len(str)%2 != 0 {
+        return false
+    }
+
+    var cur int
+    for i, s := range str {
+        switch s {
+        case '(', '[', '{':
+            cur = i+1
+        default:
+            if cur == 0 {
+                return false
+            }
+            switch s {
+            case ')':
+                if str[cur-1] != '(' {
+                    return false
+                }
+            case ']':
+                if str[cur-1] != '[' {
+                    return false
+                }
+            case '}':
+                if str[cur-1] != '{' {
+                    return false
+                }
+            default:
+                continue
+            }
+            cur--
+        }
+    }
+
+    if cur > len(str) {
+        return false
+    }
+
+    return true
 }
 
 /*
