@@ -5,48 +5,50 @@ import (
 )
 
 func main() {
-    nums := []int{1, 1, 2}
+    nums := []int{3, 2, 2, 3}
+    val := 3
     //output := 2
-    output := removeDuplicates(nums)
+    output := removeElement(nums, val)
     fmt.Println(output, nums[:output])
 
-    nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+    nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
+    val = 2
     //output = 5
-    output = removeDuplicates(nums)
+    output = removeElement(nums, val)
     fmt.Println(output, nums[:output])
 }
 
-func removeDuplicates(nums []int) int {
-    if len(nums) < 2 {
-        return len(nums)
-    }
-
+func removeElement(nums []int, val int) int {
     idx := 0
-    for i := 1; i < len(nums); i++ {
-        if nums[idx] != nums[i] {
-            idx++
+    for i := 0; i < len(nums); i++ {
+        if nums[i] != val {
             nums[idx] = nums[i]
+            idx++
         }
     }
-    return idx + 1
+
+    return idx
 }
 
 /*
-Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
-给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
 
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+
 
 Example 1:
-示例 1:
+示例 1:
 
-  Given nums = [1,1,2],
-  给定数组 nums = [1,1,2],
+  Given nums = [3,2,2,3], val = 3,
+  给定 nums = [3,2,2,3], val = 3,
 
-  Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
-  函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。
+  Your function should return length = 2, with the first two elements of nums being 2.
+  函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
 
   It doesn't matter what you leave beyond the returned length.
   你不需要考虑数组中超出新长度后面的元素。
@@ -55,11 +57,14 @@ Example 1:
 Example 2:
 示例 2:
 
-  Given nums = [0,0,1,1,1,2,2,3,3,4],
-  给定 nums = [0,0,1,1,1,2,2,3,3,4],
+  Given nums = [0,1,2,2,3,0,4,2], val = 2,
+  给定 nums = [0,1,2,2,3,0,4,2], val = 2,
 
-  Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
-  函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+  Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
+  函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。
+
+  Note that the order of those five elements can be arbitrary.
+  注意这五个元素可为任意顺序。
 
   It doesn't matter what values are set beyond the returned length.
   你不需要考虑数组中超出新长度后面的元素。
@@ -76,9 +81,10 @@ Clarification:
 
   Internally you can think of this:
   你可以想象内部操作如下:
+
     // nums is passed in by reference. (i.e., without making a copy)
-    // nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-    int len = removeDuplicates(nums);
+    // nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
+    int len = removeElement(nums, val);
 
     // any modification to nums in your function would be known by the caller.
     // 在函数里修改输入数组对于调用者是可见的。
