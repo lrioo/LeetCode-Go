@@ -1,39 +1,39 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    haystack, needle := "hello", "ll"
-    //Output := 2
-    output := strStr(haystack, needle)
-    fmt.Println(output)
+	haystack, needle := "hello", "ll"
+	//Output := 2
+	output := strStr(haystack, needle)
+	fmt.Println(output)
 
-    haystack, needle = "aaaaa", "bba"
-    //Output = -1
-    output = strStr(haystack, needle)
-    fmt.Println(output)
+	haystack, needle = "aaaaa", "bba"
+	//Output = -1
+	output = strStr(haystack, needle)
+	fmt.Println(output)
 }
 
 func strStr(haystack string, needle string) int {
-    if needle == "" || haystack == needle {
-        return 0
-    }
+	if needle == "" || haystack == needle {
+		return 0
+	}
 
-    if haystack == "" || len(haystack) <= len(needle) {
-        return -1
-    }
+	if haystack == "" || len(haystack) <= len(needle) {
+		return -1
+	}
 
-    for i := 0; i <= len(haystack)-len(needle); i++ {
-        if haystack[i] == needle[0] {
-            if haystack[i:i+len(needle)] == needle {
-                return i
-            }
-        }
-    }
+	for i := 0; i <= len(haystack)-len(needle); i++ {
+		if haystack[i] == needle[0] {
+			if haystack[i:i+len(needle)] == needle {
+				return i
+			}
+		}
+	}
 
-    return -1
+	return -1
 }
 
 /*
