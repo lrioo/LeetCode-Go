@@ -1,32 +1,32 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    nums := []int{3, 2, 4, 11, 15}
-    target := 6
+	nums := []int{3, 2, 4, 11, 15}
+	target := 6
 
-    fmt.Println(twoSum(nums, target))
+	fmt.Println(twoSum(nums, target))
 }
 
 func twoSum(nums []int, target int) []int {
-    resMap := make(map[int]int)
-    for i, num := range nums {
-        if index, ok := resMap[num]; ok {
-            if i > index {
-                i, index = index, i
-            }
+	resMap := make(map[int]int)
+	for i, num := range nums {
+		if index, ok := resMap[num]; ok {
+			if i > index {
+				i, index = index, i
+			}
 
-            return []int{i, index}
-        }
+			return []int{i, index}
+		}
 
-        key := target - num
-        resMap[key] = i
-    }
+		key := target - num
+		resMap[key] = i
+	}
 
-    return nil
+	return nil
 }
 
 /*

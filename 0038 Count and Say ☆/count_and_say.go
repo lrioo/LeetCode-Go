@@ -43,8 +43,9 @@ func countAndSay(n int) string {
 	for i := 1; i < n; i++ {
 		t.Reset()
 		for j := 0; j < len(ss); j = idx {
-			for idx = j; idx < len(ss) && ss[j] == ss[idx]; idx++ {}
-			t.WriteString(strconv.Itoa(idx-j))
+			for idx = j; idx < len(ss) && ss[j] == ss[idx]; idx++ {
+			}
+			t.WriteString(strconv.Itoa(idx - j))
 			t.WriteByte(ss[j])
 		}
 		ss = t.String()

@@ -1,40 +1,40 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    input := 103
-    //Output = 301
-    fmt.Println(reverse(input))
+	input := 103
+	//Output = 301
+	fmt.Println(reverse(input))
 
-    input = 120
-    //Output = 21
-    fmt.Println(reverse(input))
+	input = 120
+	//Output = 21
+	fmt.Println(reverse(input))
 
-    input = -123
-    //Output = -321
-    fmt.Println(reverse(input))
+	input = -123
+	//Output = -321
+	fmt.Println(reverse(input))
 }
 
 func reverse(x int) int {
-    if x/10 == 0 {
-        return x
-    }
+	if x/10 == 0 {
+		return x
+	}
 
-    var y int
-    for ; x/10 != 0; x /= 10 {
-        y *= 10
-        y += x % 10
-    }
+	var y int
+	for ; x/10 != 0; x /= 10 {
+		y *= 10
+		y += x % 10
+	}
 
-    y = y*10 + x
-    if y != int(int32(y)) {
-        return 0
-    }
+	y = y*10 + x
+	if y != int(int32(y)) {
+		return 0
+	}
 
-    return y
+	return y
 }
 
 /*

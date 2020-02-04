@@ -1,55 +1,55 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    Input := "III"
-    //Output = 3
-    fmt.Println(romanToInt(Input))
+	Input := "III"
+	//Output = 3
+	fmt.Println(romanToInt(Input))
 
-    Input = "IV"
-    //Output = 4
-    fmt.Println(romanToInt(Input))
+	Input = "IV"
+	//Output = 4
+	fmt.Println(romanToInt(Input))
 
-    Input = "IX"
-    //Output = 9
-    fmt.Println(romanToInt(Input))
+	Input = "IX"
+	//Output = 9
+	fmt.Println(romanToInt(Input))
 
-    Input = "LVIII"
-    //Output = 58
-    fmt.Println(romanToInt(Input))
+	Input = "LVIII"
+	//Output = 58
+	fmt.Println(romanToInt(Input))
 
-    Input = "MCMXCIV"
-    //Output = 1994
-    fmt.Println(romanToInt(Input))
+	Input = "MCMXCIV"
+	//Output = 1994
+	fmt.Println(romanToInt(Input))
 }
 
 var romanToNumberMap = map[byte]int{
-    'I': 1,
-    'V': 5,
-    'X': 10,
-    'L': 50,
-    'C': 100,
-    'D': 500,
-    'M': 1000,
+	'I': 1,
+	'V': 5,
+	'X': 10,
+	'L': 50,
+	'C': 100,
+	'D': 500,
+	'M': 1000,
 }
 
 func romanToInt(s string) int {
-    sum := 0
-    pre := -1
-    for i := len(s) - 1; i >= 0; i-- {
-        current := romanToNumberMap[s[i]]
-        if pre > current {
-            sum -= current
-            continue
-        }
-        sum += current
-        pre = current
-    }
+	sum := 0
+	pre := -1
+	for i := len(s) - 1; i >= 0; i-- {
+		current := romanToNumberMap[s[i]]
+		if pre > current {
+			sum -= current
+			continue
+		}
+		sum += current
+		pre = current
+	}
 
-    return sum
+	return sum
 }
 
 /*
@@ -76,7 +76,6 @@ func romanToInt1(s string) int {
     return res
 }
 */
-
 
 /*
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -108,7 +107,7 @@ nine, which is written as IX. There are six instances where subtraction is used:
   X can be placed before L (50) and C (100) to make 40 and 90.
   X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
 
-  C can be placed before D (500) and M (1000) to make 400 and 900. 
+  C can be placed before D (500) and M (1000) to make 400 and 900.
   C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 
   Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.

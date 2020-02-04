@@ -1,33 +1,33 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    nums := []int{3, 2, 2, 3}
-    val := 3
-    //output := 2
-    output := removeElement(nums, val)
-    fmt.Println(output, nums[:output])
+	nums := []int{3, 2, 2, 3}
+	val := 3
+	//output := 2
+	output := removeElement(nums, val)
+	fmt.Println(output, nums[:output])
 
-    nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
-    val = 2
-    //output = 5
-    output = removeElement(nums, val)
-    fmt.Println(output, nums[:output])
+	nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
+	val = 2
+	//output = 5
+	output = removeElement(nums, val)
+	fmt.Println(output, nums[:output])
 }
 
 func removeElement(nums []int, val int) int {
-    idx := 0
-    for i := 0; i < len(nums); i++ {
-        if nums[i] != val {
-            nums[idx] = nums[i]
-            idx++
-        }
-    }
+	idx := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != val {
+			nums[idx] = nums[i]
+			idx++
+		}
+	}
 
-    return idx
+	return idx
 }
 
 /*

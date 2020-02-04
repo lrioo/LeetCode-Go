@@ -1,34 +1,34 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    nums := []int{1, 1, 2}
-    //output := 2
-    output := removeDuplicates(nums)
-    fmt.Println(output, nums[:output])
+	nums := []int{1, 1, 2}
+	//output := 2
+	output := removeDuplicates(nums)
+	fmt.Println(output, nums[:output])
 
-    nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
-    //output = 5
-    output = removeDuplicates(nums)
-    fmt.Println(output, nums[:output])
+	nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	//output = 5
+	output = removeDuplicates(nums)
+	fmt.Println(output, nums[:output])
 }
 
 func removeDuplicates(nums []int) int {
-    if len(nums) < 2 {
-        return len(nums)
-    }
+	if len(nums) < 2 {
+		return len(nums)
+	}
 
-    idx := 0
-    for i := 1; i < len(nums); i++ {
-        if nums[idx] != nums[i] {
-            idx++
-            nums[idx] = nums[i]
-        }
-    }
-    return idx + 1
+	idx := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[idx] != nums[i] {
+			idx++
+			nums[idx] = nums[i]
+		}
+	}
+	return idx + 1
 }
 
 /*

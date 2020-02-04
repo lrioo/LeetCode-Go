@@ -1,72 +1,72 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    Input := "()"
-    //Output = true
-    fmt.Println(isValid(Input))
+	Input := "()"
+	//Output = true
+	fmt.Println(isValid(Input))
 
-    Input = "()[]{}"
-    //Output = true
-    fmt.Println(isValid(Input))
+	Input = "()[]{}"
+	//Output = true
+	fmt.Println(isValid(Input))
 
-    Input = "(]"
-    //Output = false
-    fmt.Println(isValid(Input))
+	Input = "(]"
+	//Output = false
+	fmt.Println(isValid(Input))
 
-    Input = "([)]"
-    //Output = false
-    fmt.Println(isValid(Input))
+	Input = "([)]"
+	//Output = false
+	fmt.Println(isValid(Input))
 
-    Input = "{[]}"
-    //Output = true
-    fmt.Println(isValid(Input))
+	Input = "{[]}"
+	//Output = true
+	fmt.Println(isValid(Input))
 }
 
 func isValid(str string) bool {
-    if str == "" {
-        return true
-    }
+	if str == "" {
+		return true
+	}
 
-    if len(str)%2 != 0 {
-        return false
-    }
+	if len(str)%2 != 0 {
+		return false
+	}
 
-    c := make([]int32, 0, len(str)/2)
-    for i, s := range str {
-        switch s {
-        case '(', '[', '{':
-            c = append(c, s)
-        default:
-            if i == 0 {
-                return false
-            }
-            switch s {
-            case ')':
-                if c[len(c)-1] != '(' {
-                    return false
-                }
-            case ']':
-                if c[len(c)-1] != '[' {
-                    return false
-                }
-            case '}':
-                if c[len(c)-1] != '{' {
-                    return false
-                }
-            }
-            c = c[:len(c)-1]
-        }
-    }
+	c := make([]int32, 0, len(str)/2)
+	for i, s := range str {
+		switch s {
+		case '(', '[', '{':
+			c = append(c, s)
+		default:
+			if i == 0 {
+				return false
+			}
+			switch s {
+			case ')':
+				if c[len(c)-1] != '(' {
+					return false
+				}
+			case ']':
+				if c[len(c)-1] != '[' {
+					return false
+				}
+			case '}':
+				if c[len(c)-1] != '{' {
+					return false
+				}
+			}
+			c = c[:len(c)-1]
+		}
+	}
 
-    if len(c) > 0 {
-        return false
-    }
+	if len(c) > 0 {
+		return false
+	}
 
-    return true
+	return true
 }
 
 /*

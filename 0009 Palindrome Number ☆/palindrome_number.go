@@ -1,45 +1,45 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 func main() {
-    input := 121
-    //Output = true
-    fmt.Println(isPalindrome(input))
+	input := 121
+	//Output = true
+	fmt.Println(isPalindrome(input))
 
-    input = -121
-    //Output = false
-    fmt.Println(isPalindrome(input))
+	input = -121
+	//Output = false
+	fmt.Println(isPalindrome(input))
 
-    input = 10
-    //Output = false
-    fmt.Println(isPalindrome(input))
+	input = 10
+	//Output = false
+	fmt.Println(isPalindrome(input))
 }
 
 func isPalindrome(x int) bool {
-    if x < 0 {
-        return false
-    }
+	if x < 0 {
+		return false
+	}
 
-    if x < 10 {
-        return true
-    }
+	if x < 10 {
+		return true
+	}
 
-    if x%10 == 0 {
-        return false
-    }
+	if x%10 == 0 {
+		return false
+	}
 
-    var y int
-    for y < x {
-        y = y*10 + x%10
-        x /= 10
-        if y == x || y == x/10 {
-            return true
-        }
-    }
-    return false
+	var y int
+	for y < x {
+		y = y*10 + x%10
+		x /= 10
+		if y == x || y == x/10 {
+			return true
+		}
+	}
+	return false
 }
 
 /* 解法二: 转换为字符串进行比较
