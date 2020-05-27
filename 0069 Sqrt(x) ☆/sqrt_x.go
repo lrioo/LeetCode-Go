@@ -1,7 +1,63 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	Input := 4
+	//Output: 2
+	fmt.Println(mySqrt(Input))
+
+	Input = 8
+	//Output: 2
+	fmt.Println(mySqrt(Input))
+
+	Input = 9
+	//Output: 3
+	fmt.Println(mySqrt(Input))
+
+	Input = 0
+	//Output: 0
+	fmt.Println(mySqrt(Input))
+
+	Input = 15
+	//Output: 3
+	fmt.Println(mySqrt(Input))
+}
+
+func mySqrt(x int) int {
+	if x < 2 {
+		return x
+	}
+
+	l, r := 0, x
+	for l < r {
+		m := l + (r-l)/2
+		if x/m >= m {
+			l = m + 1
+		} else {
+			r = m
+		}
+	}
+
+	return r - 1
+}
+
+func mySqrt2(x int) int {
+	if x < 2 {
+		return x
+	}
+
+	l, r := 0, x
+	for l < r {
+		m := l + (r-l)/2
+		if x/m >= m {
+			l = m + 1
+		} else {
+			r = m
+		}
+	}
+
+	return r - 1
 }
 
 /*
