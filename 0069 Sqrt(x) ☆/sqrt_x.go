@@ -7,7 +7,7 @@ func main() {
 	//Output: 2
 	fmt.Println(mySqrt(Input))
 
-	Input = 8
+	Input = 5
 	//Output: 2
 	fmt.Println(mySqrt(Input))
 
@@ -24,40 +24,38 @@ func main() {
 	fmt.Println(mySqrt(Input))
 }
 
+func mySqrt1(x int) int {
+	if x < 2 {
+		return x
+	}
+
+	res := x / 2
+	for res*res > x {
+		res = (res + x/res) / 2
+	}
+
+	return res
+}
+
 func mySqrt(x int) int {
 	if x < 2 {
 		return x
 	}
 
 	l, r := 0, x
-	for l < r {
+	for l <= r {
 		m := l + (r-l)/2
-		if x/m >= m {
+		tmp := m * m
+		if tmp == x {
+			return m
+		} else if tmp < x {
 			l = m + 1
 		} else {
-			r = m
+			r = m - 1
 		}
 	}
 
-	return r - 1
-}
-
-func mySqrt2(x int) int {
-	if x < 2 {
-		return x
-	}
-
-	l, r := 0, x
-	for l < r {
-		m := l + (r-l)/2
-		if x/m >= m {
-			l = m + 1
-		} else {
-			r = m
-		}
-	}
-
-	return r - 1
+	return r
 }
 
 /*
