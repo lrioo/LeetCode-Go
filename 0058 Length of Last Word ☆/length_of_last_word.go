@@ -1,7 +1,66 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	Input := "Hello World"
+	//Output := 5
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = "Hello "
+	//Output := 5
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = "Hello"
+	//Output := 5
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = "H "
+	//Output := 1
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = "H"
+	//Output := 1
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = "   "
+	//Output := 0
+	fmt.Println(lengthOfLastWord(Input))
+
+	Input = " "
+	//Output := 0
+	fmt.Println(lengthOfLastWord(Input))
+}
+
+func lengthOfLastWord(s string) int {
+	for i := len(s); i > 0; i-- {
+		if s[i-1] == ' ' {
+			if i != len(s) && i != 1 {
+				return len(s) - i
+			}
+
+			s = s[:len(s)-1]
+		}
+	}
+
+	return len(s)
+}
+
+func lengthOfLastWord2(s string) int {
+	length, f := 0, false
+	for i := len(s); i > 0; i-- {
+		if s[i-1] == ' ' {
+			if f {
+				break
+			}
+			continue
+		}
+
+		length++
+		f = true
+	}
+
+	return length
 }
 
 /*
