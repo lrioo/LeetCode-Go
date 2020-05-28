@@ -5,30 +5,35 @@ import (
 )
 
 func main() {
-	input1 := &ListNode{
-		Val: 1,
-		Next: &ListNode{
-			Val: 2,
-			Next: &ListNode{
-				Val:  4,
-				Next: nil,
-			},
-		},
+	Input1 := []int{1, 2, 4}
+	head1 := buildList(Input1)
+	fmt.Println("Input:", head1)
+
+	Input2 := []int{1, 3, 4}
+	head2 := buildList(Input2)
+	fmt.Println("Input:", head2)
+
+	//Output: 1->1->2->3->4->4
+	fmt.Println(mergeTwoLists(head1, head2))
+}
+
+func buildList(input []int) *ListNode {
+	head := &ListNode{
+		Val:  input[0],
+		Next: nil,
 	}
 
-	input2 := &ListNode{
-		Val: 1,
-		Next: &ListNode{
-			Val: 3,
-			Next: &ListNode{
-				Val:  4,
-				Next: nil,
-			},
-		},
+	pre := head
+	for i := 1; i < len(input); i++ {
+		next := &ListNode{
+			Val:  input[i],
+			Next: nil,
+		}
+		pre.Next = next
+		pre = next
 	}
 
-	output := mergeTwoLists(input1, input2)
-	fmt.Printf("%s", output)
+	return head
 }
 
 //ListNode Definition for singly-linked list.
@@ -37,18 +42,18 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (l ListNode) String() string {
-	l1 := l
-	s := fmt.Sprintf("%d", l1.Val)
-
-	for {
-		if l1.Next == nil {
-			return s
-		}
-
-		l1 = *l1.Next
-		s = fmt.Sprintf("%s->%d", s, l1.Val)
+func (l *ListNode) String() string {
+	if l == nil {
+		return ""
 	}
+
+	s := fmt.Sprintf("%d", l.Val)
+	cur := l.Next
+	for cur != nil {
+		s = fmt.Sprintf("%s->%d", s, cur.Val)
+		cur = cur.Next
+	}
+	return s
 }
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
