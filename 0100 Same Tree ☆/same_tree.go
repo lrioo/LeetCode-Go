@@ -9,7 +9,27 @@ func main() {
 
 	Input2 := []interface{}{1, 2, nil, nil, 3, nil, nil}
 	root2 := buildTree(Input2)
-	fmt.Println(root2)
+	fmt.Println(root2.withExtent())
+
+	fmt.Println(isSameTree(root1, root2))
+
+	Input1 = []interface{}{1, 2, nil, nil, nil}
+	root1 = buildTree(Input1)
+	fmt.Println(root1.withExtent())
+
+	Input2 = []interface{}{1, nil, 2, nil, nil}
+	root2 = buildTree(Input2)
+	fmt.Println(root2.withExtent())
+
+	fmt.Println(isSameTree(root1, root2))
+
+	Input1 = []interface{}{1, 1, nil, nil, 2, nil, nil}
+	root1 = buildTree(Input1)
+	fmt.Println(root1.withExtent())
+
+	Input2 = []interface{}{1, 2, nil, nil, 1, nil, nil}
+	root2 = buildTree(Input2)
+	fmt.Println(root2.withExtent())
 
 	fmt.Println(isSameTree(root1, root2))
 }
@@ -39,13 +59,19 @@ func buildTree(preOrderArray []interface{}) *TreeNode {
 			continue
 		}
 
+		if stack[len(stack)-1].Left != nil {
+			stack[len(stack)-1].Right = nil
+			stack = stack[:len(stack)-1]
+			continue
+		}
+
 		stack[len(stack)-1].Left = nil
 		if preOrderArray[i+1] == nil {
 			stack = stack[:len(stack)-1]
 		} else {
 			node := &TreeNode{Val: preOrderArray[i+1].(int)}
 			stack[len(stack)-1].Right = node
-			stack = append(stack[:len(stack)-1], node)
+			stack[len(stack)-1] = node
 		}
 		i++
 	}
@@ -117,7 +143,40 @@ func (t *TreeNode) withExtent() string {
 }
 
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	return false
+	stack := []*TreeNode{p, q}
+	for len(stack) > 0 && len(stack)%2 == 0 {
+		p, q = stack[len(stack)-2], stack[len(stack)-1]
+		stack = stack[:len(stack)-2]
+
+		if p == nil || q == nil {
+			if p == q {
+				continue
+			}
+			return false
+		}
+
+		if p.Val != q.Val {
+			return false
+		}
+		stack = append(stack, p.Right, q.Right, p.Left, q.Left)
+	}
+
+	return true
+}
+
+func isSameTreeRecursive(p *TreeNode, q *TreeNode) bool {
+	if p == nil || q == nil {
+		if p == q {
+			return true
+		}
+		return false
+	}
+
+	if p.Val != q.Val {
+		return false
+	}
+
+	return isSameTreeRecursive(p.Left, q.Left) && isSameTreeRecursive(p.Right, q.Right)
 }
 
 /*
@@ -135,36 +194,36 @@ Example 1:
            1         1
           / \       / \
          2   3     2   3
-        [1,2,3],   [1,2,3]
+        [1,2,3]   [1,2,3]
 
   Output: true
-  输出: true
+  输出：true
 
 
 Example 2:
-示例 2:
+示例2:
 
   Input:
   输入:
            1         1
           /           \
          2             2
-        [1,2],     [1,null,2]
+       [1,2]      [1,null,2]
 
   Output: false
-  输出: false
+  输出：false
 
 
 Example 3:
-示例 3:
+示例3:
 
   Input:
   输入:
            1         1
           / \       / \
          2   1     1   2
-        [1,2,1],   [1,1,2]
+        [1,2,1]   [1,1,2]
 
   Output: false
-  输出: false
+  输出：false
 */
