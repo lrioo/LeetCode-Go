@@ -1,7 +1,7 @@
 package main
 
 import (
-	library "LeetCode-Go/0000library"
+	library "LeetCode-Go/0000-library"
 	"fmt"
 )
 
