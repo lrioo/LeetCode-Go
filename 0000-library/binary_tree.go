@@ -11,9 +11,9 @@ func BuildBinaryTree(layerArray []interface{}) *BinaryTreeNode {
 	}
 
 	stack := make([]*BinaryTreeNode, 0)
-	head := &BinaryTreeNode{Val: layerArray[0].(int)}
+	root := &BinaryTreeNode{Val: layerArray[0].(int)}
 
-	stack = append(stack, head)
+	stack = append(stack, root)
 	for i := 1; i < len(layerArray) && len(stack) > 0; i += 2 {
 		d := stack[0]
 		stack = stack[1:]
@@ -28,7 +28,7 @@ func BuildBinaryTree(layerArray []interface{}) *BinaryTreeNode {
 			stack = append(stack, r)
 		}
 	}
-	return head
+	return root
 }
 
 //DLR
@@ -42,9 +42,9 @@ func BuildBinaryTreeByDLR(DLRArray []interface{}) *BinaryTreeNode {
 	}
 
 	stack := make([]*BinaryTreeNode, 0)
-	head := &BinaryTreeNode{Val: DLRArray[0].(int)}
+	root := &BinaryTreeNode{Val: DLRArray[0].(int)}
 
-	stack = append(stack, head)
+	stack = append(stack, root)
 	for i := 1; i < len(DLRArray); i++ {
 		if DLRArray[i] != nil {
 			node := &BinaryTreeNode{Val: DLRArray[i].(int)}
@@ -74,7 +74,7 @@ func BuildBinaryTreeByDLR(DLRArray []interface{}) *BinaryTreeNode {
 		i++
 	}
 
-	return head
+	return root
 }
 
 //LDR
