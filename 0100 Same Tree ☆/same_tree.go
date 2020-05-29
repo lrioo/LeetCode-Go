@@ -40,7 +40,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.TreeNode
+type TreeNode = library.BinaryTreeNode
 
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	stack := []*TreeNode{p, q}

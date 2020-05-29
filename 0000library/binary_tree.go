@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func BuildBinaryTree(preOrderArray []interface{}) *TreeNode {
+func BuildBinaryTree(preOrderArray []interface{}) *BinaryTreeNode {
 	if len(preOrderArray) == 0 || preOrderArray[0] == nil {
 		return nil
 	}
@@ -13,13 +13,13 @@ func BuildBinaryTree(preOrderArray []interface{}) *TreeNode {
 		preOrderArray = append(preOrderArray, nil)
 	}
 
-	stack := make([]*TreeNode, 0)
-	head := &TreeNode{Val: preOrderArray[0].(int)}
+	stack := make([]*BinaryTreeNode, 0)
+	head := &BinaryTreeNode{Val: preOrderArray[0].(int)}
 
 	stack = append(stack, head)
 	for i := 1; i < len(preOrderArray); i++ {
 		if preOrderArray[i] != nil {
-			node := &TreeNode{Val: preOrderArray[i].(int)}
+			node := &BinaryTreeNode{Val: preOrderArray[i].(int)}
 			if stack[len(stack)-1].Left == nil {
 				stack[len(stack)-1].Left = node
 			} else {
@@ -39,7 +39,7 @@ func BuildBinaryTree(preOrderArray []interface{}) *TreeNode {
 		if preOrderArray[i+1] == nil {
 			stack = stack[:len(stack)-1]
 		} else {
-			node := &TreeNode{Val: preOrderArray[i+1].(int)}
+			node := &BinaryTreeNode{Val: preOrderArray[i+1].(int)}
 			stack[len(stack)-1].Right = node
 			stack[len(stack)-1] = node
 		}
@@ -52,18 +52,18 @@ func BuildBinaryTree(preOrderArray []interface{}) *TreeNode {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode struct {
+type BinaryTreeNode struct {
 	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+	Left  *BinaryTreeNode
+	Right *BinaryTreeNode
 }
 
-func (t *TreeNode) String() string {
+func (t *BinaryTreeNode) String() string {
 	if t == nil {
 		return ""
 	}
 
-	stack := []*TreeNode{t}
+	stack := []*BinaryTreeNode{t}
 	s := fmt.Sprintf("%d", t.Val)
 
 	node := t.Left
@@ -84,12 +84,12 @@ func (t *TreeNode) String() string {
 	return s
 }
 
-func (t *TreeNode) WithExtent() string {
+func (t *BinaryTreeNode) WithExtent() string {
 	if t == nil {
 		return ""
 	}
 
-	stack := []*TreeNode{t}
+	stack := []*BinaryTreeNode{t}
 	s := fmt.Sprintf("%d", t.Val)
 
 	node := t.Left
