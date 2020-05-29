@@ -4,22 +4,50 @@ import (
 	"fmt"
 )
 
-func BuildBinaryTree(preOrderArray []interface{}) *BinaryTreeNode {
-	if len(preOrderArray) == 0 || preOrderArray[0] == nil {
+//Layer
+func BuildBinaryTree(layerArray []interface{}) *BinaryTreeNode {
+	if len(layerArray) == 0 || layerArray[0] == nil {
 		return nil
 	}
 
-	if len(preOrderArray)%2 == 0 {
-		preOrderArray = append(preOrderArray, nil)
+	stack := make([]*BinaryTreeNode, 0)
+	head := &BinaryTreeNode{Val: layerArray[0].(int)}
+
+	stack = append(stack, head)
+	for i := 1; i < len(layerArray) && len(stack) > 0; i += 2 {
+		d := stack[0]
+		stack = stack[1:]
+		if layerArray[i] != nil {
+			l := &BinaryTreeNode{Val: layerArray[i].(int)}
+			d.Left = l
+			stack = append(stack, l)
+		}
+		if i+1 < len(layerArray) && layerArray[i+1] != nil {
+			r := &BinaryTreeNode{Val: layerArray[i+1].(int)}
+			d.Right = r
+			stack = append(stack, r)
+		}
+	}
+	return head
+}
+
+//DLR
+func BuildBinaryTreeByDLR(DLRArray []interface{}) *BinaryTreeNode {
+	if len(DLRArray) == 0 || DLRArray[0] == nil {
+		return nil
+	}
+
+	if len(DLRArray)%2 == 0 {
+		DLRArray = append(DLRArray, nil)
 	}
 
 	stack := make([]*BinaryTreeNode, 0)
-	head := &BinaryTreeNode{Val: preOrderArray[0].(int)}
+	head := &BinaryTreeNode{Val: DLRArray[0].(int)}
 
 	stack = append(stack, head)
-	for i := 1; i < len(preOrderArray); i++ {
-		if preOrderArray[i] != nil {
-			node := &BinaryTreeNode{Val: preOrderArray[i].(int)}
+	for i := 1; i < len(DLRArray); i++ {
+		if DLRArray[i] != nil {
+			node := &BinaryTreeNode{Val: DLRArray[i].(int)}
 			if stack[len(stack)-1].Left == nil {
 				stack[len(stack)-1].Left = node
 			} else {
@@ -36,10 +64,10 @@ func BuildBinaryTree(preOrderArray []interface{}) *BinaryTreeNode {
 		}
 
 		stack[len(stack)-1].Left = nil
-		if preOrderArray[i+1] == nil {
+		if DLRArray[i+1] == nil {
 			stack = stack[:len(stack)-1]
 		} else {
-			node := &BinaryTreeNode{Val: preOrderArray[i+1].(int)}
+			node := &BinaryTreeNode{Val: DLRArray[i+1].(int)}
 			stack[len(stack)-1].Right = node
 			stack[len(stack)-1] = node
 		}
@@ -47,6 +75,16 @@ func BuildBinaryTree(preOrderArray []interface{}) *BinaryTreeNode {
 	}
 
 	return head
+}
+
+//LDR
+func BuildBinaryTreeByLDR(LDRArray []interface{}) *BinaryTreeNode {
+	return nil
+}
+
+//LRD
+func BuildBinaryTreeByLRD(LRDArray []interface{}) *BinaryTreeNode {
+	return nil
 }
 
 /**

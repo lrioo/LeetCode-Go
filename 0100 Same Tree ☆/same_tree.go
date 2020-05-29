@@ -7,30 +7,30 @@ import (
 
 func main() {
 	Input1 := []interface{}{1, 2, nil, nil, 3, nil, nil}
-	root1 := library.BuildBinaryTree(Input1)
+	root1 := library.BuildBinaryTreeByDLR(Input1)
 	fmt.Println(root1.WithExtent())
 
 	Input2 := []interface{}{1, 2, nil, nil, 3, nil, nil}
-	root2 := library.BuildBinaryTree(Input2)
+	root2 := library.BuildBinaryTreeByDLR(Input2)
 	fmt.Println(root2.WithExtent())
 
 	fmt.Println(isSameTree(root1, root2))
 
 	Input1 = []interface{}{1, 2, nil, nil, nil}
-	root1 = library.BuildBinaryTree(Input1)
+	root1 = library.BuildBinaryTreeByDLR(Input1)
 	fmt.Println(root1.WithExtent())
 
 	Input2 = []interface{}{1, nil, 2, nil, nil}
-	root2 = library.BuildBinaryTree(Input2)
+	root2 = library.BuildBinaryTreeByDLR(Input2)
 	fmt.Println(root2.WithExtent())
 
 	fmt.Println(isSameTree(root1, root2))
 
-	Input1 = []interface{}{1, 1, nil, nil, 2, nil, nil}
+	Input1 = []interface{}{1, 1, 2}
 	root1 = library.BuildBinaryTree(Input1)
 	fmt.Println(root1.WithExtent())
 
-	Input2 = []interface{}{1, 2, nil, nil, 1, nil, nil}
+	Input2 = []interface{}{1, 2, 1, nil, nil}
 	root2 = library.BuildBinaryTree(Input2)
 	fmt.Println(root2.WithExtent())
 
