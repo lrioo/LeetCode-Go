@@ -1,60 +1,25 @@
 package main
 
 import (
+	library "LeetCode-Go/0000library"
 	"fmt"
 )
 
 func main() {
 	Input1 := []int{1, 2, 4}
-	head1 := buildList(Input1)
+	head1 := library.BuildList(Input1)
 	fmt.Println("Input:", head1)
 
 	Input2 := []int{1, 3, 4}
-	head2 := buildList(Input2)
+	head2 := library.BuildList(Input2)
 	fmt.Println("Input:", head2)
 
 	//Output: 1->1->2->3->4->4
 	fmt.Println(mergeTwoLists(head1, head2))
 }
 
-func buildList(input []int) *ListNode {
-	head := &ListNode{
-		Val:  input[0],
-		Next: nil,
-	}
-
-	pre := head
-	for i := 1; i < len(input); i++ {
-		next := &ListNode{
-			Val:  input[i],
-			Next: nil,
-		}
-		pre.Next = next
-		pre = next
-	}
-
-	return head
-}
-
 //ListNode Definition for singly-linked list.
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func (l *ListNode) String() string {
-	if l == nil {
-		return ""
-	}
-
-	s := fmt.Sprintf("%d", l.Val)
-	cur := l.Next
-	for cur != nil {
-		s = fmt.Sprintf("%s->%d", s, cur.Val)
-		cur = cur.Next
-	}
-	return s
-}
+type ListNode = library.ListNode
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	head := &ListNode{

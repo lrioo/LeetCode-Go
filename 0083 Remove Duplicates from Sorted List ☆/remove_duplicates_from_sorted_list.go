@@ -1,61 +1,28 @@
 package main
 
-import "fmt"
+import (
+	library "LeetCode-Go/0000library"
+	"fmt"
+)
 
 func main() {
 	Input := []int{1, 1, 2}
-	head := buildList(Input)
+	head := library.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2
 	fmt.Println("Output:", deleteDuplicates(head))
 
 	Input = []int{1, 1, 2, 3, 3}
-	head = buildList(Input)
+	head = library.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2->3
 	fmt.Println("Output:", deleteDuplicates(head))
 }
 
-func buildList(input []int) *ListNode {
-	head := &ListNode{
-		Val:  input[0],
-		Next: nil,
-	}
-
-	pre := head
-	for i := 1; i < len(input); i++ {
-		next := &ListNode{
-			Val:  input[i],
-			Next: nil,
-		}
-		pre.Next = next
-		pre = next
-	}
-
-	return head
-}
-
 /**
  * Definition for singly-linked list.
  */
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func (l *ListNode) String() string {
-	if l == nil {
-		return ""
-	}
-
-	s := fmt.Sprintf("%d", l.Val)
-	cur := l.Next
-	for cur != nil {
-		s = fmt.Sprintf("%s->%d", s, cur.Val)
-		cur = cur.Next
-	}
-	return s
-}
+type ListNode = library.ListNode
 
 func deleteDuplicates(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
