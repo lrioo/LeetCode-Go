@@ -1,0 +1,78 @@
+package main
+
+import (
+	"fmt"
+
+	library "LeetCode-Go/0000-library"
+)
+
+func main() {
+	Input := []interface{}{3, 9, 20, nil, nil, 15, 7}
+	root := library.BuildBinaryTree(Input)
+	fmt.Println(root.WithExtent())
+	// Output = true
+	fmt.Println(isBalanced(root))
+
+	Input = []interface{}{1, 2, 2, 3, 3, nil, nil, 4, 4}
+	root = library.BuildBinaryTree(Input)
+	fmt.Println(root.WithExtent())
+	// Output = false
+	fmt.Println(isBalanced(root))
+}
+
+/**
+ * Definition for a binary tree node.
+ */
+type TreeNode = library.BinaryTreeNode
+
+func isBalanced(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	return false
+}
+
+/*
+Given a binary tree, determine if it is height-balanced.
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+
+For this problem, a height-balanced binary tree is defined as:
+本题中，一棵高度平衡二叉树定义为：
+
+  a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
+  一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。
+
+
+Example 1:
+示例 1:
+
+  Given the following tree [3,9,20,null,null,15,7]:
+  给定二叉树 [3,9,20,null,null,15,7]
+
+        3
+       / \
+      9  20
+        /  \
+       15   7
+
+  Return true.
+  返回true。
+
+
+Example 2:
+示例 2:
+
+  Given the following tree [1,2,2,3,3,null,null,4,4]:
+  给定二叉树 [1,2,2,3,3,null,null,4,4]
+
+           1
+          / \
+         2   2
+        / \
+       3   3
+      / \
+     4   4
+
+  Return false.
+  返回false。
+*/
