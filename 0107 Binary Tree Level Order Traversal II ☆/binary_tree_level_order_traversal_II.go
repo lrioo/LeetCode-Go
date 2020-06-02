@@ -23,7 +23,61 @@ func levelOrderBottom(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
-	return nil
+
+	res := make([][]int, 0)
+	queue := []*TreeNode{root}
+	for len(queue) != 0 {
+		layer := make([]int, 0, len(queue))
+		for i := len(queue); i > 0; i-- {
+			node := queue[0]
+			queue = queue[1:]
+			layer = append(layer, node.Val)
+
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		res = append(res, nil)
+		copy(res[1:], res)
+		res[0] = layer
+	}
+
+	return res
+}
+
+func levelOrderBottomRecursive(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	res := treeRecursive(root)
+
+	return res
+}
+
+func treeRecursive(nodes ...*TreeNode) [][]int {
+	ns := make([]*TreeNode, 0, len(nodes)*2)
+	layer := make([]int, 0, len(nodes))
+	for _, node := range nodes {
+		if node.Left != nil {
+			ns = append(ns, node.Left)
+		}
+		if node.Right != nil {
+			ns = append(ns, node.Right)
+		}
+		layer = append(layer, node.Val)
+	}
+
+	res := [][]int{layer}
+	if len(ns) != 0 {
+		res = append(treeRecursive(ns...), res...)
+	}
+
+	return res
 }
 
 /*
