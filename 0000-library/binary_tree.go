@@ -13,16 +13,15 @@ func BuildBinaryTree(layerArray []interface{}) *BinaryTreeNode {
 	root := &BinaryTreeNode{Val: layerArray[0].(int)}
 	queue := []*BinaryTreeNode{root}
 	for i := 1; i < len(layerArray) && len(queue) > 0; i += 2 {
-		d := queue[0]
-		queue = queue[1:]
+		node, queue := queue[0], queue[1:]
 		if layerArray[i] != nil {
 			l := &BinaryTreeNode{Val: layerArray[i].(int)}
-			d.Left = l
+			node.Left = l
 			queue = append(queue, l)
 		}
 		if i+1 < len(layerArray) && layerArray[i+1] != nil {
 			r := &BinaryTreeNode{Val: layerArray[i+1].(int)}
-			d.Right = r
+			node.Right = r
 			queue = append(queue, r)
 		}
 	}
@@ -109,8 +108,7 @@ func (t *BinaryTreeNode) String() string {
 		}
 
 		if len(stack) > 0 {
-			node = stack[len(stack)-1]
-			stack = stack[:len(stack)-1]
+			node, stack = stack[len(stack)-1], stack[:len(stack)-1]
 			node = node.Right
 		}
 	}
@@ -136,8 +134,7 @@ func (t *BinaryTreeNode) WithExtent() string {
 		s = fmt.Sprintf("%s, null", s)
 
 		if len(stack) > 0 {
-			node = stack[len(stack)-1]
-			stack = stack[:len(stack)-1]
+			node, stack = stack[len(stack)-1], stack[:len(stack)-1]
 			node = node.Right
 		}
 	}

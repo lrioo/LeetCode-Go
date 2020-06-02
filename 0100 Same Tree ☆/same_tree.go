@@ -45,8 +45,7 @@ type TreeNode = library.BinaryTreeNode
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	stack := []*TreeNode{p, q}
 	for len(stack) > 0 && len(stack)%2 == 0 {
-		p, q = stack[len(stack)-2], stack[len(stack)-1]
-		stack = stack[:len(stack)-2]
+		p, q, stack = stack[len(stack)-2], stack[len(stack)-1], stack[:len(stack)-2]
 
 		if p == nil || q == nil {
 			if p == q {
