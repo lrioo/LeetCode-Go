@@ -23,7 +23,40 @@ func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	return 0
+
+	var max int
+	queue := []*TreeNode{root}
+	for len(queue) != 0 {
+		max++
+		for i := len(queue); i > 0; i-- {
+			node, queue := queue[0], queue[1:]
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+	}
+
+	return max
+}
+
+func maxDepthRecursive(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	var max int
+	ld := maxDepth(root.Left)
+	rd := maxDepth(root.Right)
+	if ld > rd {
+		max = ld
+	} else {
+		max = rd
+	}
+
+	return 1 + max
 }
 
 /*
