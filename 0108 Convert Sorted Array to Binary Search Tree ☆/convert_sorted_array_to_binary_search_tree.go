@@ -21,6 +21,37 @@ func sortedArrayToBST(nums []int) *TreeNode {
 	if len(nums) == 0 {
 		return nil
 	}
+
+	return nil
+}
+
+func sortedArrayToBSTRecursive1(nums []int) *TreeNode {
+	if len(nums) == 0 {
+		return nil
+	}
+
+	root := &TreeNode{
+		Val: nums[len(nums)/2],
+	}
+	root.Left = sortedArrayToBSTRecursive1(nums[:len(nums)/2])
+	root.Right = sortedArrayToBSTRecursive1(nums[len(nums)/2+1:])
+
+	return root
+}
+
+func sortedArrayToBSTRecursive2(nums []int) *TreeNode {
+	return createBST(nums, 0, len(nums)-1)
+}
+
+func createBST(nums []int, left, right int) *TreeNode {
+	if left <= right {
+		middle := (left + right) / 2
+		root := &TreeNode{Val: nums[middle]}
+		root.Left = createBST(nums, left, middle-1)
+		root.Right = createBST(nums, middle+1, right)
+		return root
+	}
+
 	return nil
 }
 
