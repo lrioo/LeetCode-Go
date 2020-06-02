@@ -41,9 +41,14 @@ func levelOrderBottom(root *TreeNode) [][]int {
 			}
 		}
 
-		res = append(res, nil)
-		copy(res[1:], res)
-		res[0] = layer
+		res = append(res, layer)
+		//res = append(res, nil)
+		//copy(res[1:], res)
+		//res[0] = layer
+	}
+
+	for i, j := 0, len(res)-1; i < j; i, j = i+1, j-1 {
+		res[i], res[j] = res[j], res[i]
 	}
 
 	return res
