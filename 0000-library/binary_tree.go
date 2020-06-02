@@ -10,22 +10,20 @@ func BuildBinaryTree(layerArray []interface{}) *BinaryTreeNode {
 		return nil
 	}
 
-	stack := make([]*BinaryTreeNode, 0)
 	root := &BinaryTreeNode{Val: layerArray[0].(int)}
-
-	stack = append(stack, root)
-	for i := 1; i < len(layerArray) && len(stack) > 0; i += 2 {
-		d := stack[0]
-		stack = stack[1:]
+	queue := []*BinaryTreeNode{root}
+	for i := 1; i < len(layerArray) && len(queue) > 0; i += 2 {
+		d := queue[0]
+		queue = queue[1:]
 		if layerArray[i] != nil {
 			l := &BinaryTreeNode{Val: layerArray[i].(int)}
 			d.Left = l
-			stack = append(stack, l)
+			queue = append(queue, l)
 		}
 		if i+1 < len(layerArray) && layerArray[i+1] != nil {
 			r := &BinaryTreeNode{Val: layerArray[i+1].(int)}
 			d.Right = r
-			stack = append(stack, r)
+			queue = append(queue, r)
 		}
 	}
 	return root
@@ -41,10 +39,8 @@ func BuildBinaryTreeByDLR(DLRArray []interface{}) *BinaryTreeNode {
 		DLRArray = append(DLRArray, nil)
 	}
 
-	stack := make([]*BinaryTreeNode, 0)
 	root := &BinaryTreeNode{Val: DLRArray[0].(int)}
-
-	stack = append(stack, root)
+	stack := []*BinaryTreeNode{root}
 	for i := 1; i < len(DLRArray); i++ {
 		if DLRArray[i] != nil {
 			node := &BinaryTreeNode{Val: DLRArray[i].(int)}

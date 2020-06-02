@@ -27,10 +27,10 @@ func isSymmetric(root *TreeNode) bool {
 		return true
 	}
 
-	stack := []*TreeNode{root.Left, root.Right}
-	for len(stack) > 0 && len(stack)%2 == 0 {
-		p, q := stack[0], stack[1]
-		stack = stack[2:]
+	queue := []*TreeNode{root.Left, root.Right}
+	for len(queue) > 0 && len(queue)%2 == 0 {
+		p, q := queue[0], queue[1]
+		queue = queue[2:]
 
 		if p == nil || q == nil {
 			if p == q {
@@ -42,7 +42,7 @@ func isSymmetric(root *TreeNode) bool {
 		if p.Val != q.Val {
 			return false
 		}
-		stack = append(stack, p.Left, q.Right, p.Right, q.Left)
+		queue = append(queue, p.Left, q.Right, p.Right, q.Left)
 	}
 
 	return true
