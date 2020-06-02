@@ -11,7 +11,7 @@ func main() {
 	root := library.BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = [[15,7], [9,20], [3]]
-	fmt.Println(levelOrderBottom(root))
+	fmt.Println(levelOrderBottomRecursive(root))
 }
 
 /**
@@ -54,12 +54,37 @@ func levelOrderBottomRecursive(root *TreeNode) [][]int {
 		return nil
 	}
 
-	res := treeRecursive(root)
+	res := make([][]int, 0)
+	levelOrderRecursive1(root, 0, &res)
+	for i, j := 0, len(res)-1; i < j; i, j = i+1, j-1 {
+		res[i], res[j] = res[j], res[i]
+	}
+	//res = levelOrderRecursive2(root)
 
 	return res
 }
 
-func treeRecursive(nodes ...*TreeNode) [][]int {
+func levelOrderRecursive1(node *TreeNode, level int, res *[][]int) {
+	if node == nil {
+		return
+	}
+
+	if len(*res) == level {
+		*res = append(*res, make([]int, 0))
+	}
+	(*res)[level] = append((*res)[level], node.Val)
+
+	if node.Left != nil {
+		levelOrderRecursive1(node.Left, level+1, res)
+	}
+	if node.Right != nil {
+		levelOrderRecursive1(node.Right, level+1, res)
+	}
+
+	return
+}
+
+func levelOrderRecursive2(nodes ...*TreeNode) [][]int {
 	ns := make([]*TreeNode, 0, len(nodes)*2)
 	layer := make([]int, 0, len(nodes))
 	for _, node := range nodes {
@@ -74,7 +99,7 @@ func treeRecursive(nodes ...*TreeNode) [][]int {
 
 	res := [][]int{layer}
 	if len(ns) != 0 {
-		res = append(treeRecursive(ns...), res...)
+		res = append(levelOrderRecursive2(ns...), res...)
 	}
 
 	return res
