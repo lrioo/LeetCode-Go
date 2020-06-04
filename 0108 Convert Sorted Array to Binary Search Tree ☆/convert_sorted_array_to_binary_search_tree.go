@@ -22,7 +22,34 @@ func sortedArrayToBST(nums []int) *TreeNode {
 		return nil
 	}
 
-	return nil
+	root := &TreeNode{}
+	left, right, node := 0, len(nums)-1, root
+
+	stack := []int{left, right}
+	nodeStack := []*TreeNode{node}
+	for len(stack) > 0 {
+		left, right, stack = stack[len(stack)-2], stack[len(stack)-1], stack[:len(stack)-2]
+		node, nodeStack = nodeStack[len(nodeStack)-1], nodeStack[:len(nodeStack)-1]
+
+		middle := left + (right-left)/2
+		node.Val = nums[middle]
+
+		l, r := left, middle-1
+		if l <= r {
+			node.Left = &TreeNode{}
+			nodeStack = append(nodeStack, node.Left)
+			stack = append(stack, l, r)
+		}
+
+		l, r = middle+1, right
+		if l <= r {
+			node.Right = &TreeNode{}
+			nodeStack = append(nodeStack, node.Right)
+			stack = append(stack, l, r)
+		}
+	}
+
+	return root
 }
 
 func sortedArrayToBSTRecursive1(nums []int) *TreeNode {
@@ -30,11 +57,12 @@ func sortedArrayToBSTRecursive1(nums []int) *TreeNode {
 		return nil
 	}
 
+	middle := len(nums) / 2
 	root := &TreeNode{
-		Val: nums[len(nums)/2],
+		Val: nums[middle],
 	}
-	root.Left = sortedArrayToBSTRecursive1(nums[:len(nums)/2])
-	root.Right = sortedArrayToBSTRecursive1(nums[len(nums)/2+1:])
+	root.Left = sortedArrayToBSTRecursive1(nums[:middle])
+	root.Right = sortedArrayToBSTRecursive1(nums[middle+1:])
 
 	return root
 }
