@@ -26,10 +26,28 @@ func main() {
 type TreeNode = library.BinaryTreeNode
 
 func isBalanced(root *TreeNode) bool {
-	if root == nil {
-		return true
+	_, f := isBalancedTree(root)
+	return f
+}
+
+func isBalancedRecursive(root *TreeNode) bool {
+	_, f := isBalancedTree(root)
+	return f
+}
+
+func isBalancedTree(node *TreeNode) (int, bool) {
+	if node == nil {
+		return 0, true
 	}
-	return false
+
+	ld, lf := isBalancedTree(node.Left)
+	rd, rf := isBalancedTree(node.Right)
+
+	if ld < rd {
+		ld, rd = rd, ld
+	}
+
+	return ld + 1, lf && rf && (ld-rd <= 1)
 }
 
 /*
