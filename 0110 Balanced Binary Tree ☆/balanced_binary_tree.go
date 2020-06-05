@@ -26,8 +26,54 @@ func main() {
 type TreeNode = library.BinaryTreeNode
 
 func isBalanced(root *TreeNode) bool {
-	_, f := isBalancedTree(root)
-	return f
+	if root == nil {
+		return true
+	}
+
+	nodes := []*TreeNode{root}
+	depthMap := make(map[*TreeNode]int)
+	for i := 0; i < len(nodes); {
+		offset := len(nodes)
+		for j := len(nodes); j > i; j-- {
+			node := nodes[j-1]
+			if node.Left != nil {
+				nodes = append(nodes, node.Left)
+			}
+			if node.Right != nil {
+				nodes = append(nodes, node.Right)
+			}
+
+			if node.Left == nil && node.Right == nil {
+				depthMap[node] = 1
+			} else {
+				depthMap[node] = 0
+			}
+		}
+		i = offset
+	}
+
+	for i := len(nodes) - 1; i >= 0; i-- {
+		node := nodes[i]
+		if d, ok := depthMap[node]; d > 0 && ok {
+			continue
+		}
+
+		depth := 0
+		if ld, ok := depthMap[node.Left]; ok {
+			depth = ld
+		}
+		if rd, ok := depthMap[node.Right]; ok {
+			if depth < rd {
+				depth, rd = rd, depth
+			}
+			if depth-rd > 1 {
+				return false
+			}
+		}
+		depthMap[node] = depth + 1
+	}
+
+	return true
 }
 
 func isBalancedRecursive(root *TreeNode) bool {
@@ -41,13 +87,19 @@ func isBalancedTree(node *TreeNode) (int, bool) {
 	}
 
 	ld, lf := isBalancedTree(node.Left)
+	if !lf {
+		return 0, false
+	}
 	rd, rf := isBalancedTree(node.Right)
+	if !rf {
+		return 0, false
+	}
 
 	if ld < rd {
 		ld, rd = rd, ld
 	}
 
-	return ld + 1, lf && rf && (ld-rd <= 1)
+	return ld + 1, ld-rd <= 1
 }
 
 /*
