@@ -76,21 +76,21 @@ func isBalanced(root *TreeNode) bool {
 	return true
 }
 
-func isBalancedRecursive(root *TreeNode) bool {
-	_, f := isBalancedTree(root)
+func isBalancedR(root *TreeNode) bool {
+	_, f := isBalancedRecursive(root)
 	return f
 }
 
-func isBalancedTree(node *TreeNode) (int, bool) {
+func isBalancedRecursive(node *TreeNode) (int, bool) {
 	if node == nil {
 		return 0, true
 	}
 
-	ld, lf := isBalancedTree(node.Left)
+	ld, lf := isBalancedRecursive(node.Left)
 	if !lf {
 		return 0, false
 	}
-	rd, rf := isBalancedTree(node.Right)
+	rd, rf := isBalancedRecursive(node.Right)
 	if !rf {
 		return 0, false
 	}

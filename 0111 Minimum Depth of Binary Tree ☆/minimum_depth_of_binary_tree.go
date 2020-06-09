@@ -23,18 +23,51 @@ func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
+
+	var min int
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		min++
+		for i := len(queue); i > 0; i-- {
+			node := queue[0]
+			queue = queue[1:]
+			if node.Left == nil && node.Right == nil {
+				return min
+			}
+
+			if node.Left != nil {
+				queue = append(queue, root.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, root.Right)
+			}
+		}
+	}
+
+	return min
+}
+
+func minDepthR(root *TreeNode) int {
+	return minDepthRecursive(root)
+}
+
+func minDepthRecursive(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
 	var min int
 	if root.Left != nil {
-		min = minDepth(root.Left)
+		min = minDepthRecursive(root.Left)
 	}
 	if root.Right != nil {
-		l := minDepth(root.Right)
+		l := minDepthRecursive(root.Right)
 		if min > 0 && min > l {
 			min = l
 		}
 	}
 
-	return min +1
+	return min + 1
 }
 
 /*

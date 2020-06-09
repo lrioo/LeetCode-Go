@@ -52,6 +52,11 @@ func sortedArrayToBST(nums []int) *TreeNode {
 	return root
 }
 
+func sortedArrayToBSTR(nums []int) *TreeNode {
+	return sortedArrayToBSTRecursive1(nums)
+	//return sortedArrayToBSTRecursive2(nums)
+}
+
 func sortedArrayToBSTRecursive1(nums []int) *TreeNode {
 	if len(nums) == 0 {
 		return nil

@@ -47,15 +47,15 @@ func isSymmetric(root *TreeNode) bool {
 	return true
 }
 
-func isSymmetricRecursive(root *TreeNode) bool {
+func isSymmetricR(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
 
-	return isSymmetricTree(root.Left, root.Right)
+	return isSymmetricRecursive(root.Left, root.Right)
 }
 
-func isSymmetricTree(p *TreeNode, q *TreeNode) bool {
+func isSymmetricRecursive(p *TreeNode, q *TreeNode) bool {
 	if p == nil || q == nil {
 		if p == q {
 			return true
@@ -67,7 +67,7 @@ func isSymmetricTree(p *TreeNode, q *TreeNode) bool {
 		return false
 	}
 
-	return isSymmetricTree(p.Left, q.Right) && isSymmetricTree(p.Right, q.Left)
+	return isSymmetricRecursive(p.Left, q.Right) && isSymmetricRecursive(p.Right, q.Left)
 }
 
 /*

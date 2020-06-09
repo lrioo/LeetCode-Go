@@ -43,6 +43,10 @@ func maxDepth(root *TreeNode) int {
 	return max
 }
 
+func maxDepthR(root *TreeNode) int {
+	return maxDepthRecursive(root)
+}
+
 func maxDepthRecursive(root *TreeNode) int {
 	if root == nil {
 		return 0

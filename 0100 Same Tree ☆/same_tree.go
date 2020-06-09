@@ -63,6 +63,10 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 	return true
 }
 
+func isSameTreeR(p *TreeNode, q *TreeNode) bool {
+	return isSameTreeRecursive(p, q)
+}
+
 func isSameTreeRecursive(p *TreeNode, q *TreeNode) bool {
 	if p == nil || q == nil {
 		if p == q {
