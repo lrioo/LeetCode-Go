@@ -1,11 +1,34 @@
 package main
 
-func main() {
+import (
+	library "LeetCode-Go/0000-library"
+	"fmt"
+	"reflect"
+)
 
+func main() {
+	Input := 10
+	Output := library.Slice(generate(Input), reflect.TypeOf([][]interface{}(nil)))
+	fmt.Println(library.TwoDimensionalArray(Output.([][]interface{})))
 }
 
 func generate(numRows int) [][]int {
-	return nil
+	if numRows < 1 {
+		return nil
+	}
+
+	rows := make([][]int, numRows)
+	rows[0] = []int{1}
+	for i := 1; i < numRows; i++ {
+		row := make([]int, i+1)
+		row[0], row[i] = 1, 1
+
+		for j := 1; j < i; j++ {
+			row[j] = rows[i-1][j-1] + rows[i-1][j]
+		}
+		rows[i] = row
+	}
+	return rows
 }
 
 /*
