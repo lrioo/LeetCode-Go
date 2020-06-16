@@ -1,17 +1,17 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	lib "LeetCode-Go/0000-library"
 	"fmt"
 )
 
 func main() {
 	Input1 := []int{1, 2, 4}
-	head1 := library.BuildList(Input1)
+	head1 := lib.BuildList(Input1)
 	fmt.Println("Input:", head1)
 
 	Input2 := []int{1, 3, 4}
-	head2 := library.BuildList(Input2)
+	head2 := lib.BuildList(Input2)
 	fmt.Println("Input:", head2)
 
 	//Output: 1->1->2->3->4->4
@@ -19,7 +19,7 @@ func main() {
 }
 
 //ListNode Definition for singly-linked list.
-type ListNode = library.ListNode
+type ListNode = lib.ListNode
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	head := &ListNode{

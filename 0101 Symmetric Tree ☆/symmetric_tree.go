@@ -1,18 +1,18 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 	"fmt"
 )
 
 func main() {
 	Input := []interface{}{1, 2, 2, 3, 4, 4, 3}
-	root := library.BuildBinaryTree(Input)
+	root := BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	fmt.Println(isSymmetric(root))
 
 	Input = []interface{}{1, 2, 2, nil, 3, nil, 3}
-	root = library.BuildBinaryTree(Input)
+	root = BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	fmt.Println(isSymmetric(root))
 }
@@ -20,7 +20,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func isSymmetric(root *TreeNode) bool {
 	if root == nil {

@@ -1,13 +1,13 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 	"fmt"
 )
 
 func main() {
 	Input, sum := []interface{}{5, 4, 8, 11, nil, 13, 4, 7, 2, nil, nil, nil, 1}, 22
-	root := library.BuildBinaryTree(Input)
+	root := BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = true
 	fmt.Println(hasPathSum(root, sum))
@@ -16,7 +16,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func hasPathSum(root *TreeNode, sum int) bool {
 	if root == nil {

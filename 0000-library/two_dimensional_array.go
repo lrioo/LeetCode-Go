@@ -1,36 +1,43 @@
-package library
+package lib
 
 import (
 	"fmt"
 	"reflect"
-	"unsafe"
 )
 
-type TwoDimensionalArray [][]interface{}
+type TwoDimensionalArray []interface{}
 
 func (tda TwoDimensionalArray) String() string {
 	var s string
 	for _, array := range tda {
-		s = fmt.Sprintln(array)
+		s += fmt.Sprintln(array)
 	}
 
 	return s
 }
 
-func Slice(slice interface{}, newSliceType reflect.Type) interface{} {
-	sv := reflect.ValueOf(slice)
-	if sv.Kind() != reflect.Slice {
-		panic(fmt.Sprintf("Slice called with non-slice value of type %T", slice))
+func isSlice(arg interface{}) (val reflect.Value, ok bool) {
+	val = reflect.ValueOf(arg)
+
+	if val.Kind() == reflect.Slice {
+		ok = true
 	}
 
-	if newSliceType.Kind() != reflect.Slice {
-		panic(fmt.Sprintf("Slice called with non-slice type of type %T", newSliceType))
+	return
+}
+
+func Slice(slice interface{}) []interface{} {
+	val, ok := isSlice(slice)
+	if !ok {
+		return nil
 	}
 
-	newSlice := reflect.New(newSliceType)
-	hdr := (*reflect.SliceHeader)(unsafe.Pointer(newSlice.Pointer()))
-	hdr.Cap = sv.Cap() * int(sv.Type().Elem().Size()) / int(newSliceType.Elem().Size())
-	hdr.Len = sv.Len() * int(sv.Type().Elem().Size()) / int(newSliceType.Elem().Size())
-	hdr.Data = uintptr(sv.Pointer())
-	return newSlice.Elem().Interface()
+	length := val.Len()
+
+	out := make([]interface{}, length)
+	for i := 0; i < length; i++ {
+		out[i] = val.Index(i).Interface()
+	}
+
+	return out
 }

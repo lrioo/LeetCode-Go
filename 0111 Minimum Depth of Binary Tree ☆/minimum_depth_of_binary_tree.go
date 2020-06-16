@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 )
 
 func main() {
 	Input := []interface{}{3, 9, 20, nil, nil, 15, 7}
-	root := library.BuildBinaryTree(Input)
+	root := BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = 2
 	fmt.Println(minDepth(root))
@@ -17,7 +17,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func minDepth(root *TreeNode) int {
 	if root == nil {

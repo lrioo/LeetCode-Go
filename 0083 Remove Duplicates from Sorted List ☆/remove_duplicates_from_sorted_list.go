@@ -1,19 +1,19 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	lib "LeetCode-Go/0000-library"
 	"fmt"
 )
 
 func main() {
 	Input := []int{1, 1, 2}
-	head := library.BuildList(Input)
+	head := lib.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2
 	fmt.Println("Output:", deleteDuplicates(head))
 
 	Input = []int{1, 1, 2, 3, 3}
-	head = library.BuildList(Input)
+	head = lib.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2->3
 	fmt.Println("Output:", deleteDuplicates(head))
@@ -22,7 +22,7 @@ func main() {
 /**
  * Definition for singly-linked list.
  */
-type ListNode = library.ListNode
+type ListNode = lib.ListNode
 
 func deleteDuplicates(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {

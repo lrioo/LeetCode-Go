@@ -3,18 +3,18 @@ package main
 import (
 	"fmt"
 
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 )
 
 func main() {
 	Input := []interface{}{3, 9, 20, nil, nil, 15, 7}
-	root := library.BuildBinaryTree(Input)
+	root := BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = true
 	fmt.Println(isBalanced(root))
 
 	Input = []interface{}{1, 2, 2, 3, 3, nil, nil, 4, 4}
-	root = library.BuildBinaryTree(Input)
+	root = BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = false
 	fmt.Println(isBalanced(root))
@@ -23,7 +23,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func isBalanced(root *TreeNode) bool {
 	if root == nil {

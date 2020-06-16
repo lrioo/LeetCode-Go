@@ -1,15 +1,13 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 	"fmt"
-	"reflect"
 )
 
 func main() {
-	Input := 10
-	Output := library.Slice(generate(Input), reflect.TypeOf([][]interface{}(nil)))
-	fmt.Println(library.TwoDimensionalArray(Output.([][]interface{})))
+	Input := 5
+	fmt.Println(TwoDimensionalArray(Slice(generate(Input))))
 }
 
 func generate(numRows int) [][]int {

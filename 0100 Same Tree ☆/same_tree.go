@@ -1,37 +1,37 @@
 package main
 
 import (
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 	"fmt"
 )
 
 func main() {
 	Input1 := []interface{}{1, 2, nil, nil, 3, nil, nil}
-	root1 := library.BuildBinaryTreeByDLR(Input1)
+	root1 := BuildBinaryTreeByDLR(Input1)
 	fmt.Println(root1.WithExtent())
 
 	Input2 := []interface{}{1, 2, nil, nil, 3, nil, nil}
-	root2 := library.BuildBinaryTreeByDLR(Input2)
+	root2 := BuildBinaryTreeByDLR(Input2)
 	fmt.Println(root2.WithExtent())
 
 	fmt.Println(isSameTree(root1, root2))
 
 	Input1 = []interface{}{1, 2, nil, nil, nil}
-	root1 = library.BuildBinaryTreeByDLR(Input1)
+	root1 = BuildBinaryTreeByDLR(Input1)
 	fmt.Println(root1.WithExtent())
 
 	Input2 = []interface{}{1, nil, 2, nil, nil}
-	root2 = library.BuildBinaryTreeByDLR(Input2)
+	root2 = BuildBinaryTreeByDLR(Input2)
 	fmt.Println(root2.WithExtent())
 
 	fmt.Println(isSameTree(root1, root2))
 
 	Input1 = []interface{}{1, 1, 2}
-	root1 = library.BuildBinaryTree(Input1)
+	root1 = BuildBinaryTree(Input1)
 	fmt.Println(root1.WithExtent())
 
 	Input2 = []interface{}{1, 2, 1, nil, nil}
-	root2 = library.BuildBinaryTree(Input2)
+	root2 = BuildBinaryTree(Input2)
 	fmt.Println(root2.WithExtent())
 
 	fmt.Println(isSameTree(root1, root2))
@@ -40,7 +40,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	stack := []*TreeNode{p, q}

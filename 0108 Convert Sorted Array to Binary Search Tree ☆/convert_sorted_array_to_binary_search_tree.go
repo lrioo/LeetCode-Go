@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	library "LeetCode-Go/0000-library"
+	. "LeetCode-Go/0000-library"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 /**
  * Definition for a binary tree node.
  */
-type TreeNode = library.BinaryTreeNode
+type TreeNode = BinaryTreeNode
 
 func sortedArrayToBST(nums []int) *TreeNode {
 	if len(nums) == 0 {
