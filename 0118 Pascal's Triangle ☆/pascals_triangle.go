@@ -29,6 +29,33 @@ func generate(numRows int) [][]int {
 	return rows
 }
 
+func generateR(numRows int) [][]int {
+	return generateRecursive(numRows)
+}
+
+func generateRecursive(numRows int) [][]int {
+	if numRows < 1 {
+		return nil
+	}
+
+	if numRows == 1 {
+		return [][]int{{1}}
+	}
+
+	if numRows == 2 {
+		return [][]int{{1}, {1, 1}}
+	}
+
+	rows := generateRecursive(numRows - 1)
+	row := make([]int, numRows)
+	row[0], row[numRows-1] = 1, 1
+	for j := 1; j < numRows-1; j++ {
+		row[j] = rows[len(rows)-1][j-1] + rows[len(rows)-1][j]
+	}
+
+	return append(rows, row)
+}
+
 /*
 Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
 给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
