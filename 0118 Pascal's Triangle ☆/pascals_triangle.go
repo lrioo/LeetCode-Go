@@ -42,10 +42,6 @@ func generateRecursive(numRows int) [][]int {
 		return [][]int{{1}}
 	}
 
-	if numRows == 2 {
-		return [][]int{{1}, {1, 1}}
-	}
-
 	rows := generateRecursive(numRows - 1)
 	row := make([]int, numRows)
 	row[0], row[numRows-1] = 1, 1
