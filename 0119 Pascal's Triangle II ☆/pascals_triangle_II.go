@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	Input := 0
+	Input := 3
 	//Output := [1,3,3,1]
 	fmt.Println(getRow(Input))
 }
@@ -19,6 +19,33 @@ func getRow(rowIndex int) []int {
 		for j := i; j > 0; j-- {
 			row[j] += row[j-1]
 		}
+	}
+
+	return row
+}
+
+func getRowR(rowIndex int) []int {
+	if rowIndex < 0 {
+		return nil
+	}
+
+	return getRowRecursive(rowIndex)
+}
+
+func getRowRecursive(rowIndex int) []int {
+	if rowIndex == 0 {
+		return []int{1}
+	}
+
+	if rowIndex == 1 {
+		return []int{1, 1}
+	}
+
+	pre := getRowRecursive(rowIndex - 1)
+	row := make([]int, rowIndex+1)
+	row[0], row[rowIndex] = 1, 1
+	for i := 1; i < rowIndex; i++ {
+		row[i] = pre[i-1] + pre[i]
 	}
 
 	return row

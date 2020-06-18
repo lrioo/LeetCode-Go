@@ -30,6 +30,10 @@ func generate(numRows int) [][]int {
 }
 
 func generateR(numRows int) [][]int {
+	if numRows < 1 {
+		return nil
+	}
+
 	return generateRecursive(numRows)
 }
 
