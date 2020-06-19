@@ -1,11 +1,31 @@
 package main
 
-func main() {
+import (
+	"fmt"
+)
 
+func main() {
+	Input := []int{7, 1, 5, 3, 6, 4}
+	//Output := 5
+	fmt.Println(maxProfit(Input))
+
+	Input = []int{7, 6, 4, 3, 1}
+	//Output := 0
+	fmt.Println(maxProfit(Input))
 }
 
 func maxProfit(prices []int) int {
-	return 0
+	pro, cost := 0, prices[0]
+	for i := 1; i < len(prices); i++ {
+		if cost > prices[i] {
+			cost = prices[i]
+		}
+
+		if diff := prices[i] - cost; pro < diff {
+			pro = diff
+		}
+	}
+	return pro
 }
 
 /*
