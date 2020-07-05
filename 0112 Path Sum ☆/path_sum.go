@@ -56,18 +56,11 @@ func hasPathSumRecursive(node *TreeNode, sum int) bool {
 		return false
 	}
 
-	if node.Left == nil && node.Right == nil && node.Val == sum {
-		return true
+	if node.Left == nil && node.Right == nil {
+		return node.Val == sum
 	}
 
-	if hasPathSumRecursive(node.Left, sum-node.Val) {
-		return true
-	}
-	if hasPathSumRecursive(node.Right, sum-node.Val) {
-		return true
-	}
-
-	return false
+	return hasPathSumRecursive(node.Left, sum-node.Val) || hasPathSumRecursive(node.Right, sum-node.Val)
 }
 
 /*
