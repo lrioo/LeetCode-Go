@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"unicode"
 )
 
 func main() {
@@ -35,7 +34,6 @@ func isPalindrome(s string) bool {
 			j--
 			continue
 		}
-		unicode.ToLower()
 		return false
 	}
 
