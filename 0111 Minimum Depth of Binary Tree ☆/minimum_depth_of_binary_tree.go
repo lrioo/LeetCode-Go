@@ -11,7 +11,13 @@ func main() {
 	root := BuildBinaryTree(Input)
 	fmt.Println(root.WithExtent())
 	// Output = 2
-	fmt.Println(minDepth(root))
+	fmt.Println(minDepthR(root))
+
+	Input = []interface{}{1, nil, 2}
+	root = BuildBinaryTree(Input)
+	fmt.Println(root.WithExtent())
+	// Output = 2
+	fmt.Println(minDepthR(root))
 }
 
 /**
@@ -62,7 +68,7 @@ func minDepthRecursive(root *TreeNode) int {
 	}
 	if root.Right != nil {
 		l := minDepthRecursive(root.Right)
-		if min > 0 && min > l {
+		if min == 0 || min > l {
 			min = l
 		}
 	}
