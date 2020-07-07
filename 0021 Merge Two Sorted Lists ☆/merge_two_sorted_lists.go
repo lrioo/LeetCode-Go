@@ -15,7 +15,7 @@ func main() {
 	fmt.Println("Input:", head2)
 
 	//Output: 1->1->2->3->4->4
-	fmt.Println(mergeTwoLists(head1, head2))
+	fmt.Println(mergeTwoLists(head1, head2).WithExtend())
 }
 
 //ListNode Definition for singly-linked list.

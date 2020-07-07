@@ -1,31 +1,73 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	actions := []string{"MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin"}
+	data := [][]int{{}, {-2}, {0}, {-3}, {}, {}, {}, {}}
+	output := test(actions, data)
+	fmt.Println(output)
+}
+
+func test(actions []string, data [][]int) []interface{} {
+	var ms MinStack
+	output := make([]interface{}, len(actions))
+	for i, action := range actions {
+		d := data[i]
+
+		switch action {
+		case "MinStack":
+			ms = Constructor()
+		case "push":
+			ms.Push(d[0])
+		case "pop":
+			ms.Pop()
+		case "top":
+			output[i] = ms.Top()
+		case "getMin":
+			output[i] = ms.GetMin()
+		}
+	}
+	return output
 }
 
 type MinStack struct {
+	stack []int
+	min   []int
 }
 
 /** initialize your data structure here. */
 func Constructor() MinStack {
-
+	return MinStack{
+		stack: make([]int, 0),
+		min:   make([]int, 0),
+	}
 }
 
 func (this *MinStack) Push(x int) {
-
+	this.stack = append(this.stack, x)
+	if len(this.min) == 0 || this.min[len(this.min)-1] >= x {
+		this.min = append(this.min, x)
+	}
 }
 
 func (this *MinStack) Pop() {
+	if len(this.stack) == 0 {
+		return
+	}
 
+	if this.stack[len(this.stack)-1] == this.min[len(this.min)-1] {
+		this.min = this.min[:len(this.min)-1]
+	}
+	this.stack = this.stack[:len(this.stack)-1]
 }
 
 func (this *MinStack) Top() int {
-
+	return this.stack[len(this.stack)-1]
 }
 
 func (this *MinStack) GetMin() int {
-
+	return this.min[len(this.min)-1]
 }
 
 /**

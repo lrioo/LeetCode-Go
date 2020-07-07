@@ -10,13 +10,13 @@ func main() {
 	head := lib.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2
-	fmt.Println("Output:", deleteDuplicates(head))
+	fmt.Println("Output:", deleteDuplicates(head).WithExtend())
 
 	Input = []int{1, 1, 2, 3, 3}
 	head = lib.BuildList(Input)
 	fmt.Println("Input:", head)
 	//Output: 1->2->3
-	fmt.Println("Output:", deleteDuplicates(head))
+	fmt.Println("Output:", deleteDuplicates(head).WithExtend())
 }
 
 /**

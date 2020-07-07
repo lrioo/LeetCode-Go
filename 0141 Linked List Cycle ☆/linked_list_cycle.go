@@ -1,22 +1,47 @@
 package main
 
-import lib "LeetCode-Go/0000-library"
+import (
+	lib "LeetCode-Go/0000-library"
+	"fmt"
+)
 
 func main() {
+	input, pos := []int{3, 2, 0, -4}, 1
+	head := lib.BuildCycleList(input, pos)
+	//Output := true
+	fmt.Println(hasCycle(head))
 
+	input, pos = []int{1, 2}, 0
+	head = lib.BuildCycleList(input, pos)
+	//Output := true
+	fmt.Println(hasCycle(head))
+
+	input, pos = []int{1}, -1
+	head = lib.BuildCycleList(input, pos)
+	//Output := false
+	fmt.Println(hasCycle(head))
 }
 
 /**
  * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
  */
 type ListNode = lib.ListNode
 
 func hasCycle(head *ListNode) bool {
+	if head == nil {
+		return false
+	}
 
+	slow, fast := head, head.Next
+	for fast != nil && fast.Next != nil {
+		if slow == fast {
+			return true
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	return false
 }
 
 /*
