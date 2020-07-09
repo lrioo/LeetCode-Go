@@ -1,11 +1,36 @@
 package main
 
-func main() {
+import (
+	"fmt"
+)
 
+func main() {
+	Input := 1
+	//Output := "A"
+	fmt.Println(convertToTitle(Input))
+
+	Input = 28
+	//Output = "AB"
+	fmt.Println(convertToTitle(Input))
+
+	Input = 701
+	//Output = "ZY"
+	fmt.Println(convertToTitle(Input))
+
+	Input = 703
+	//Output = "ZY"
+	fmt.Println(convertToTitle(Input))
 }
 
 func convertToTitle(n int) string {
+	var res string
+	for n > 0 {
+		n--
+		res = string(n%26+'A') + res
+		n /= 26
+	}
 
+	return res
 }
 
 /*

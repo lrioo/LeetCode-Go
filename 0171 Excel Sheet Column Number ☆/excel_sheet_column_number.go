@@ -1,11 +1,29 @@
 package main
 
-func main() {
+import (
+	"fmt"
+)
 
+func main() {
+	Input := "A"
+	//Output := 1
+	fmt.Println(titleToNumber(Input))
+
+	Input = "AB"
+	//Output = 28
+	fmt.Println(titleToNumber(Input))
+
+	Input = "ZY"
+	//Output = 701
+	fmt.Println(titleToNumber(Input))
 }
 
 func titleToNumber(s string) int {
-
+	var res int
+	for i := 0; i < len(s); i++ {
+		res = res*26 + int(s[i]-'A'+1)
+	}
+	return res
 }
 
 /*
