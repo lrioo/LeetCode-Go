@@ -1,11 +1,45 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	Input := []int{3, 2, 3}
+	//Output := 3
+	fmt.Println(majorityElement(Input))
+
+	Input = []int{2, 2, 1, 1, 1, 2, 2}
+	//Output = 2
+	fmt.Println(majorityElement(Input))
+
+	Input = []int{2, 2, 2, 1, 1}
+	//Output = 2
+	fmt.Println(majorityElement(Input))
 }
 
-func majorityElement(nums []int) int {
+/*
+摩尔投票法 Moore Voting —— 需要O(n)的时间和O(1)的空间。
+  首先将第一个数字假设为过半数，然后把计数器设为1，比较下一个数和此数是否相等，若相等则计数器加一，反之减一。
+  然后看此时计数器的值，若为零，则将下一个值设为候选过半数。
+  以此类推直到遍历完整个数组，当前候选过半数即为该数组的过半数。
+*/
 
+func majorityElement(nums []int) int {
+	res, cnt := 0, 0
+	for i := 0; i < len(nums); i++ {
+		if cnt == 0 {
+			res = nums[i]
+			cnt++
+			continue
+		}
+
+		if res == nums[i] {
+			cnt++
+		} else {
+			cnt--
+		}
+	}
+
+	return res
 }
 
 /*

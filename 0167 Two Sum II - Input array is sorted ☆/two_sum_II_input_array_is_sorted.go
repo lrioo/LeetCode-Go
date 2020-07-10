@@ -1,11 +1,61 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	numbers, target := []int{2, 7, 11, 15}, 9
+	//Output := []int{1, 2}
+	fmt.Println(twoSum(numbers, target))
 }
 
 func twoSum(numbers []int, target int) []int {
+	if len(numbers) < 2 {
+		return nil
+	}
 
+	for l, r := 0, len(numbers)-1; l < r; {
+		if numbers[l] > target/2 {
+			return nil
+		}
+		if numbers[r] >= target {
+			r--
+			continue
+		}
+
+		if sum := numbers[l] + numbers[r]; sum == target {
+			return []int{l + 1, r + 1}
+		} else if sum < target {
+			l++
+		} else {
+			r--
+		}
+	}
+
+	return nil
+}
+
+func twoSumR(numbers []int, target int) []int {
+	if len(numbers) < 2 {
+		return nil
+	}
+
+	for i := 0; i < len(numbers); i++ {
+		if numbers[i] > target/2 {
+			return nil
+		}
+
+		for j := i + 1; j < len(numbers); j++ {
+			if sum := numbers[i] + numbers[j]; sum == target {
+				return []int{i + 1, j + 1}
+			} else if sum > target {
+				break
+			} else {
+				continue
+			}
+		}
+	}
+
+	return nil
 }
 
 /*
