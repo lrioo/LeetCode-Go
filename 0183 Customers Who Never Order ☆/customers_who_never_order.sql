@@ -27,6 +27,18 @@ insert into Orders (Id, CustomerId)
 values ('2', '1');
 
 -- Write your MySQL query statement below
+SELECT Name AS Customers
+FROM Customers
+WHERE Id NOT IN (SELECT CustomerId FROM Orders);
+
+SELECT Name AS Customers
+FROM Customers C
+WHERE NOT EXISTS(SELECT 1 FROM Orders O WHERE O.CustomerId = C.Id);
+
+SELECT Name AS Customers
+FROM Customers
+         LEFT JOIN Orders ON Customers.Id = Orders.CustomerId
+WHERE Orders.CustomerId IS NULL;
 
 
 /*
