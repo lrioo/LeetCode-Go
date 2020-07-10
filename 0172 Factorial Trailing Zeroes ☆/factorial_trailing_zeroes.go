@@ -24,7 +24,7 @@ func trailingZeroes(n int) int {
 
 /*
 Given an integer n, return the number of trailing zeroes in n!.
-给定一个整数 n，返回 n! 结果尾数中零的数量。
+给定一个整数n，返回n!结果尾数中零的数量。
 
 
 Example 1:
@@ -37,7 +37,7 @@ Example 1:
   输出: 0
 
   Explanation: 3! = 6, no trailing zero.
-  解释: 3! = 6，尾数中没有零。
+  解释: 3!=6，尾数中没有零。
 
 
 Example 2:
@@ -50,7 +50,7 @@ Example 2:
   输出: 1
 
   Explanation: 5! = 120, one trailing zero.
-  解释: 5! = 120，尾数中有1个零.
+  解释: 5!=120，尾数中有1个零.
 
 
 Note: Your solution should be in logarithmic time complexity.
