@@ -15,8 +15,19 @@ insert into Person (Id, Email)
 values ('3', 'a@b.com');
 
 -- Write your MySQL query statement below
+SELECT Email
+FROM Person P
+GROUP BY Email
+HAVING COUNT(Email)>1;
 
+SELECT P.Email
+FROM (SELECT Email, COUNT(Email) AS cnt FROM Person GROUP BY Email) P
+WHERE P.cnt > 1;
 
+SELECT DISTINCT P1.Email
+FROM Person P1
+         LEFT JOIN Person P2 ON P1.Email = P2.Email
+WHERE P1.Id <> P2.Id;
 
 /*
 Write a SQL query to find all duplicate emails in a table named Person.
