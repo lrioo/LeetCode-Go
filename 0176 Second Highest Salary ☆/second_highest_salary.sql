@@ -18,9 +18,19 @@ values ('3', '300');
 -- Write your MySQL query statement below
 SELECT Salary AS SecondHighestSalary
 FROM Employee
-ORDER BY Salary
+GROUP BY Salary
+UNION ALL
+(SELECT NULL AS SecondHighestSalary)
+ORDER BY SecondHighestSalary DESC
 LIMIT 1 OFFSET 1;
 
+SELECT MAX(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary NOT IN (SELECT MAX(Salary) FROM Employee);
+
+SELECT MAX(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary < (SELECT MAX(Salary) FROM Employee);
 
 /*
 Write a SQL query to get the second highest salary from the Employee table.
