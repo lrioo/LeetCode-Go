@@ -32,6 +32,12 @@ SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
 WHERE Salary < (SELECT MAX(Salary) FROM Employee);
 
+SELECT Salary AS SecondHighestSalary
+FROM Employee E1
+WHERE 1 = (SELECT COUNT(DISTINCT E2.Salary)
+           FROM Employee E2
+           WHERE E2.Salary > E1.Salary);
+
 /*
 Write a SQL query to get the second highest salary from the Employee table.
 编写一个SQL查询，获取Employee表中第二高的薪水（Salary）。
