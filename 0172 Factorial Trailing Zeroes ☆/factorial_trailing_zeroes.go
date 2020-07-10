@@ -1,11 +1,25 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	Input := 3
+	//Output := 0
+	fmt.Println(trailingZeroes(Input))
+
+	Input = 5
+	//Output = 1
+	fmt.Println(trailingZeroes(Input))
 }
 
 func trailingZeroes(n int) int {
+	var res int
+	for n > 0 {
+		n /= 5
+		res += n
+	}
 
+	return res
 }
 
 /*
