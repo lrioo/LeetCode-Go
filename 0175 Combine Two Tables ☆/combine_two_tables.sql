@@ -31,7 +31,7 @@ FROM (SELECT DISTINCT PersonId, FirstName, LastName FROM Person) P
          LEFT JOIN Address A ON P.PersonId = A.PersonId;
 
 SELECT P.FirstName, P.LastName, A.City, A.State
-FROM (SELECT DISTINCT AddressId, PersonId, City, State FROM Address) A
+FROM (SELECT DISTINCT PersonId, City, State FROM Address) A
          RIGHT JOIN Person P ON P.PersonId = A.PersonId;
 
 
