@@ -17,10 +17,6 @@ func twoSum(numbers []int, target int) []int {
 		if numbers[l] > target/2 {
 			return nil
 		}
-		if numbers[r] >= target {
-			r--
-			continue
-		}
 
 		if sum := numbers[l] + numbers[r]; sum == target {
 			return []int{l + 1, r + 1}
