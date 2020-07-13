@@ -36,7 +36,15 @@ SELECT Salary AS SecondHighestSalary
 FROM Employee E1
 WHERE 1 = (SELECT COUNT(DISTINCT E2.Salary)
            FROM Employee E2
-           WHERE E2.Salary > E1.Salary);
+           WHERE E2.Salary > E1.Salary)
+UNION ALL
+(SELECT NULL AS SecondHighestSalary)
+ORDER BY SecondHighestSalary DESC;
+
+SELECT (SELECT DISTINCT salary
+        FROM employee
+        ORDER BY salary DESC
+        LIMIT 1 OFFSET 1) AS secondhighestsalary;
 
 /*
 Write a SQL query to get the second highest salary from the Employee table.
